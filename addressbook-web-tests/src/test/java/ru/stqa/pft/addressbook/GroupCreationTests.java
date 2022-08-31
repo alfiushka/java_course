@@ -25,10 +25,6 @@ public class GroupCreationTests {
     baseUrl = "https://www.google.com/";
     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     js = (JavascriptExecutor) driver;
-  }
-
-  @Test
-  public void testGroupCreationTests() throws Exception {
     driver.get("http://localhost/addressbook/index.php");
     driver.findElement(By.name("user")).click();
     driver.findElement(By.name("user")).clear();
@@ -36,6 +32,10 @@ public class GroupCreationTests {
     driver.findElement(By.name("pass")).clear();
     driver.findElement(By.name("pass")).sendKeys("secret");
     driver.findElement(By.xpath("//input[@value='Login']")).click();
+  }
+
+  @Test
+  public void testGroupCreation() throws Exception {
     driver.findElement(By.linkText("groups")).click();
     driver.get("http://localhost/addressbook/group.php");
     driver.findElement(By.name("new")).click();
@@ -50,11 +50,11 @@ public class GroupCreationTests {
     driver.findElement(By.name("group_footer")).sendKeys("test3");
     driver.findElement(By.name("submit")).click();
     driver.findElement(By.linkText("groups")).click();
-    driver.findElement(By.linkText("Logout")).click();
   }
 
   @AfterClass(alwaysRun = true)
   public void tearDown() throws Exception {
+    driver.findElement(By.linkText("Logout")).click();
     driver.quit();
     String verificationErrorString = verificationErrors.toString();
     if (!"".equals(verificationErrorString)) {

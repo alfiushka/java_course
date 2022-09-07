@@ -8,8 +8,12 @@ public class NavigationHelper extends HelperBase {
     public NavigationHelper(WebDriver wd) {
        super(wd);
     }
-    public void returnToHomePage() {
+    public void goToHomePage() {
     wd.get("http://localhost/addressbook/");
+    }
+
+    public void returnToHomePage() {
+        click(By.linkText("home page"));
     }
 
     public void goToGroupPage() {

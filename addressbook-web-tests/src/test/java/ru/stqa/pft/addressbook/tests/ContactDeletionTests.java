@@ -1,0 +1,15 @@
+package ru.stqa.pft.addressbook.tests;
+
+import org.testng.annotations.Test;
+
+public class ContactDeletionTests extends TestBase{
+
+    @Test
+    public void testContactDeletion() {
+        app.getNavigationHelper().goToHomePage();
+        app.getContactHelper().selectContactDeletion();
+        app.getContactHelper().submitContactDeletion();
+        app.getContactHelper().submitAlertDeletion();
+
+    }
+}

@@ -30,7 +30,7 @@ public class ApplicationManager {
             wd = new ChromeDriver();
         } else wd = new FirefoxDriver();
         baseUrl = "https://www.google.com/";
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
+        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         js = (JavascriptExecutor) wd;
         wd.get("http://localhost/addressbook/index.php");
         groupHelper = new GroupHelper(wd);

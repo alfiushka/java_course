@@ -32,7 +32,7 @@ public class ApplicationManager {
         baseUrl = "https://www.google.com/";
         wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
         js = (JavascriptExecutor) wd;
-        wd.get("http://localhost/addressbook/index.php");
+        wd.get("http://localhost/addressbook/");
         groupHelper = new GroupHelper(wd);
         navigationHelper = new NavigationHelper(wd);
         contactHelper = new ContactHelper(wd);

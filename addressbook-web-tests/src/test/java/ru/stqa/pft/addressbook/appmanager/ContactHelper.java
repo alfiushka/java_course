@@ -2,7 +2,12 @@ package ru.stqa.pft.addressbook.appmanager;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.StringTokenizer;
 
 public class ContactHelper extends HelperBase {
     public ContactHelper(WebDriver wd) {
@@ -28,8 +33,9 @@ public class ContactHelper extends HelperBase {
         type(By.name("home"), contactData.getPhone());
         type(By.name("email"),contactData.getEmail());
     }
-    public void selectContactDeletion() {
-        click(By.xpath("//td/input"));
+    public void selectContactDeletion(int index) {
+        wd.findElements(By.xpath("//td/input")).get(index).click();
+//        click(By.xpath("//td/input"));
     }
 
     public void submitContactDeletion() {
@@ -47,5 +53,21 @@ public class ContactHelper extends HelperBase {
 
     public boolean isThereContact() {
         return isElementPresent(By.xpath("//td/input"));
+    }
+
+    public List<ContactData> getContactList() {
+        List<ContactData> contacts = new ArrayList<ContactData>();
+        List<WebElement> elements = wd.findElements(By.name("selected[]"));
+        for (WebElement element : elements) {
+            String fullName = element.getAttribute("title");
+            StringTokenizer st = new StringTokenizer(fullName, " \t\n\r,.()");
+            String select = st.nextToken();
+            String name= st.nextToken();
+            String lastName = st.nextToken();
+            int id = Integer.parseInt(element.getAttribute("id"));
+            ContactData contact = new ContactData(id, name, lastName, null, null, null) ;
+            contacts.add(contact);
+        }
+        return contacts;
     }
 }

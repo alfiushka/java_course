@@ -7,7 +7,6 @@ import ru.stqa.pft.addressbook.model.ContactData;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.StringTokenizer;
 
 public class ContactHelper extends HelperBase {
     public ContactHelper(WebDriver wd) {
@@ -18,8 +17,9 @@ public class ContactHelper extends HelperBase {
         click(By.xpath("//div[@id='content']/form/input[21]"));
     }
 
-    public void initContactModification() {
-        click(By.xpath("//img[@alt='Edit']"));
+    public void initContactModification(int index) {
+//        click(By.xpath("//img[@alt='Edit']"));
+        wd.findElements(By.xpath("//img[@alt='Edit']")).get(index).click();
     }
 
     public void submitContactModification() {
@@ -57,14 +57,11 @@ public class ContactHelper extends HelperBase {
 
     public List<ContactData> getContactList() {
         List<ContactData> contacts = new ArrayList<ContactData>();
-        List<WebElement> elements = wd.findElements(By.name("selected[]"));
+        List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
-            String fullName = element.getAttribute("title");
-            StringTokenizer st = new StringTokenizer(fullName, " \t\n\r,.()");
-            String select = st.nextToken();
-            String name= st.nextToken();
-            String lastName = st.nextToken();
-            int id = Integer.parseInt(element.getAttribute("id"));
+            String name= element.findElement(By.xpath("//td[3]")).getText();
+            String lastName = element.findElement(By.xpath("//td[2]")).getText();
+            int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
             ContactData contact = new ContactData(id, name, lastName, null, null, null) ;
             contacts.add(contact);
         }

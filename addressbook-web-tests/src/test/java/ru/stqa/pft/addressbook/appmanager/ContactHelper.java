@@ -51,6 +51,12 @@ public class ContactHelper extends HelperBase {
         submitContactCreation();
     }
 
+    public void modifyContact(int index, ContactData contact) {
+        initContactModification(index);
+        fillContactForm(contact);
+        submitContactModification();
+    }
+
     public boolean isThereContact() {
         return isElementPresent(By.xpath("//td/input"));
     }
@@ -59,8 +65,8 @@ public class ContactHelper extends HelperBase {
         List<ContactData> contacts = new ArrayList<ContactData>();
         List<WebElement> elements = wd.findElements(By.name("entry"));
         for (WebElement element : elements) {
-            String name= element.findElement(By.xpath("//td[3]")).getText();
-            String lastName = element.findElement(By.xpath("//td[2]")).getText();
+            String name= element.findElement(By.xpath(".//td[3]")).getText();
+            String lastName = element.findElement(By.xpath(".//td[2]")).getText();
             int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
             ContactData contact = new ContactData(id, name, lastName, null, null, null) ;
             contacts.add(contact);

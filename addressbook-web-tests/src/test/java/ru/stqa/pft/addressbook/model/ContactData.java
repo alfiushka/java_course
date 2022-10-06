@@ -8,6 +8,64 @@ public class ContactData {
     private String lastName;
     private String address;
     private String phone;
+
+   private String allEmails;
+    private String allPhones;
+
+    private String home;
+    private String mobile;
+    private String work;
+    private String email;
+    private String email1;
+    private String email2;
+    private String email3;
+
+    public String getAllPhones() {
+        return allPhones;
+    }
+    public ContactData withAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+        return this;
+    }
+    public String getAllEmails() {
+        return allEmails;
+    }
+    public ContactData withAllEmails(String allEmails) {
+        this.allEmails = allEmails;
+        return this;
+    }
+
+    public String getEmail1() {return email1;}
+    public ContactData withEmail1(String email1) {
+        this.email1 = email1;
+        return this;
+    }
+    public String getEmail2() {return email2;}
+    public ContactData withEmail2(String email2) {
+        this.email2 = email2;
+        return this;
+    }
+    public String getEmail3() {return email3;}
+    public ContactData withEmail3(String email3) {
+        this.email3 = email3;
+        return this;
+    }
+    public String getHome() {return home;}
+
+    public ContactData withHomePhone(String home) {
+        this.home = home;
+        return this;
+    }
+    public String getMobile() {return mobile;}
+    public ContactData withMobilePhone(String mobile) {
+        this.mobile = mobile;
+        return this;
+    }
+    public String getWork () {return  work;}
+    public ContactData withWorkPhone(String work) {
+        this.work = work;
+        return this;
+    }
     public ContactData withId(int id) {
         this.id = id;
         return this;
@@ -37,7 +95,6 @@ public class ContactData {
         return this;
     }
 
-    private String email;
 //
 //    public ContactData(String firstName, String lastName, String address, String phone, String email) {
 //        this.id = Integer.MAX_VALUE;

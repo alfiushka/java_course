@@ -33,14 +33,19 @@ public class ContactPhoneTests extends TestBase{
         ContactData contactInfoFromEditForm = app.contact().infoFormEditForm(contact);
 
         assertThat(contact.getAllPhones(), equalTo(mergePhones(contactInfoFromEditForm)));
-//        assertThat(contact.getMobile(), equalTo(cleaned(contactInfoFromEditForm.getMobile())));
-//        assertThat(contact.getWork(), equalTo(cleaned(contactInfoFromEditForm.getWork())));
+        assertThat(contact.getAllEmails(), equalTo(mergeEmails(contactInfoFromEditForm)));
+        assertThat(contact.getAddress(), equalTo(contactInfoFromEditForm.getAddress()));
     }
 
     private String mergePhones(ContactData contact) {
         return Arrays.asList(contact.getHome(), contact.getMobile(), contact.getWork())
                 .stream().filter((s) -> ! s.equals(""))
                 .map(ContactPhoneTests::cleaned)
+                .collect(Collectors.joining("\n"));
+    }
+    private String mergeEmails(ContactData contact) {
+        return Arrays.asList(contact.getEmail1(), contact.getEmail2(), contact.getEmail3())
+                .stream().filter((s) -> ! s.equals(""))
                 .collect(Collectors.joining("\n"));
     }
 

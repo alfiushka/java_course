@@ -5,7 +5,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
 
@@ -90,8 +89,7 @@ public class ContactHelper extends HelperBase {
 //            String[] emails = element.findElement(By.xpath(".//td[5]")).getText().split("\n");
             int id = Integer.parseInt(element.findElement(By.name("selected[]")).getAttribute("value"));
             contactsCache.add(new ContactData().withId(id).withFirstName(name).withLastName(lastName)
-                    .withAllPhones(allPhones).withAllEmails(allEmails));
-//                    .withEmail1(emails[0]).withEmail2(emails[1]).withEmail3(emails[2]).withAddress(address));
+                    .withAllPhones(allPhones).withAllEmails(allEmails).withAddress(address));
         }
         return new Contacts(contactsCache);
     }

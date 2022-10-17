@@ -1,0 +1,82 @@
+<list>
+  <contact>
+    <firstName>firstname 0</firstName>
+    <lastName>lastname 0</lastName>
+    <address>address 0</address>
+    <home>homePhone 0</home>
+    <mobile>mobilePhone 0</mobile>
+    <email1>email1 0</email1>
+  </contact>
+  <contact>
+    <firstName>firstname 1</firstName>
+    <lastName>lastname 1</lastName>
+    <address>address 1</address>
+    <home>homePhone 1</home>
+    <mobile>mobilePhone 1</mobile>
+    <email1>email1 1</email1>
+  </contact>
+  <contact>
+    <firstName>firstname 2</firstName>
+    <lastName>lastname 2</lastName>
+    <address>address 2</address>
+    <home>homePhone 2</home>
+    <mobile>mobilePhone 2</mobile>
+    <email1>email1 2</email1>
+  </contact>
+  <contact>
+    <firstName>firstname 3</firstName>
+    <lastName>lastname 3</lastName>
+    <address>address 3</address>
+    <home>homePhone 3</home>
+    <mobile>mobilePhone 3</mobile>
+    <email1>email1 3</email1>
+  </contact>
+  <contact>
+    <firstName>firstname 4</firstName>
+    <lastName>lastname 4</lastName>
+    <address>address 4</address>
+    <home>homePhone 4</home>
+    <mobile>mobilePhone 4</mobile>
+    <email1>email1 4</email1>
+  </contact>
+  <contact>
+    <firstName>firstname 5</firstName>
+    <lastName>lastname 5</lastName>
+    <address>address 5</address>
+    <home>homePhone 5</home>
+    <mobile>mobilePhone 5</mobile>
+    <email1>email1 5</email1>
+  </contact>
+  <contact>
+    <firstName>firstname 6</firstName>
+    <lastName>lastname 6</lastName>
+    <address>address 6</address>
+    <home>homePhone 6</home>
+    <mobile>mobilePhone 6</mobile>
+    <email1>email1 6</email1>
+  </contact>
+  <contact>
+    <firstName>firstname 7</firstName>
+    <lastName>lastname 7</lastName>
+    <address>address 7</address>
+    <home>homePhone 7</home>
+    <mobile>mobilePhone 7</mobile>
+    <email1>email1 7</email1>
+  </contact>
+  <contact>
+    <firstName>firstname 8</firstName>
+    <lastName>lastname 8</lastName>
+    <address>address 8</address>
+    <home>homePhone 8</home>
+    <mobile>mobilePhone 8</mobile>
+    <email1>email1 8</email1>
+  </contact>
+  <contact>
+    <firstName>firstname 9</firstName>
+    <lastName>lastname 9</lastName>
+    <address>address 9</address>
+    <home>homePhone 9</home>
+    <mobile>mobilePhone 9</mobile>
+    <email1>email1 9</email1>
+  </contact>
+</list>

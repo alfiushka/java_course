@@ -34,6 +34,7 @@ public class ContactHelper extends HelperBase {
         type(By.name("address"), contactData.getAddress());
         type(By.name("home"), contactData.getPhone());
         type(By.name("email"),contactData.getEmail());
+        attach(By.name("photo"), contactData.getPhoto());
     }
 
     public void selectContactDeletionById(int id) {

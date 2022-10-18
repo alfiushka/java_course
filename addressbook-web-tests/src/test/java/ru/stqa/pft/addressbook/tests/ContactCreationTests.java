@@ -1,15 +1,14 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
-import ru.stqa.pft.addressbook.model.GroupData;
-
 import java.io.*;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -17,23 +16,18 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactCreationTests extends TestBase{
   @DataProvider
   public Iterator<Object[]> validContacts() throws IOException {
-    List<Object[]> list = new ArrayList<Object[]>();
-    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.csv")));
+    BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.xml")));
+    String xml = "";
     String line = reader.readLine();
     while (line != null) {
-      String[] split = line.split(";");
-      list.add(new Object[] {new ContactData().withFirstName(split[0]).withLastName(split[1]).withAddress(split[2])
-              .withHomePhone(split[3]).withMobilePhone(split[4]).withEmail1(split[5])});
+      xml += line;
       line = reader.readLine();
     }
-    return list.iterator();
-
-//    list.add(new Object[] {new ContactData().withFirstName("firstname 1").withLastName("lastname 1")
-//            .withAddress("address 1").withHomePhone("homePhone 1").withMobilePhone("mobilePhone 1").withEmail1("email1 1")});
-//    list.add(new Object[] {new ContactData().withFirstName("firstname 2").withLastName("lastname 2")
-//            .withAddress("address 2").withHomePhone("homePhone 2").withMobilePhone("mobilePhone 2").withEmail1("email1 2")});
-//    list.add(new Object[] {new ContactData().withFirstName("firstname 3").withLastName("lastname 3")
-//            .withAddress("address 3").withHomePhone("homePhone 3").withMobilePhone("mobilePhone 3").withEmail1("email1 3")});
+    XStream xstream = new XStream();
+    xstream.processAnnotations(ContactData.class);
+    xstream.allowTypes(new Class[] {ContactData.class});
+    List<ContactData> contacts = (List<ContactData>) xstream.fromXML(xml);
+    return contacts.stream().map((g) -> new Object[] {g}).collect(Collectors.toList()).iterator();
   }
 
   @Test(dataProvider = "validContacts")

@@ -24,6 +24,7 @@ public class ApplicationManager {
     private String baseUrl;
     private JavascriptExecutor js;
     private String browser;
+    private DbHelper dbHelper;
 
     public ApplicationManager(String browser) throws IOException {
 
@@ -35,6 +36,8 @@ public class ApplicationManager {
 //        String browser = BrowserType.CHROME;
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+
+        dbHelper = new DbHelper();
 
         if (browser.equals(BrowserType.CHROME)) {
             wd = new ChromeDriver();
@@ -74,4 +77,6 @@ public class ApplicationManager {
     public SessionHelper getSessionHelper() {
         return sessionHelper;
     }
+
+    public DbHelper db() { return dbHelper; }
 }

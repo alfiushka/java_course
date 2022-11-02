@@ -14,11 +14,15 @@ public class NavigationHelper extends HelperBase {
     }
     public void homePage() {
 //    wd.get("http://localhost/addressbook/");
-        wd.get(properties.getProperty("web.homePage"));
+    wd.get(properties.getProperty("web.homePage"));
     }
 
     public void returnToHomePage() {
         click(By.linkText("home page"));
+    }
+
+    public void returnToHomePage1() {
+        click(By.linkText("home"));
     }
 
     public void groupPage() {

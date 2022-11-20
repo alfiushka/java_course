@@ -14,10 +14,15 @@ import java.util.Properties;
 
 public class ApplicationManager {
     private final Properties properties;
-    protected WebDriver wd;
+    private WebDriver wd;
     private String baseUrl;
     private JavascriptExecutor js;
     private String browser;
+    private RegistrationHelper registrationHelper;
+    private FtpHelper ftp;
+    private MailHelper mailHelper;
+    private ChangePasswordHelper changePasswordHelper;
+    private DbHelper dbHelper;
 
     public ApplicationManager(String browser) throws IOException {
 
@@ -29,17 +34,70 @@ public class ApplicationManager {
 //        String browser = BrowserType.CHROME;
         String target = System.getProperty("target", "local");
         properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-
-        if (browser.equals(BrowserType.CHROME)) {
-            wd = new ChromeDriver();
-        } else wd = new FirefoxDriver();
-        baseUrl = "https://www.google.com/";
-        wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
-        js = (JavascriptExecutor) wd;
-        wd.get(properties.getProperty("web.baseUrl"));
     }
 
     public void stop() {
-        wd.quit();
+        if (wd != null) {
+            wd.quit();
+        }
+    }
+
+    public HttpSession newSession() {
+        return new HttpSession(this);
+    }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
+
+    public RegistrationHelper registration() {
+        if (registrationHelper == null) {
+            registrationHelper = new RegistrationHelper(this);
+        }
+        return registrationHelper;
+    }
+
+    public FtpHelper ftp() {
+        if (ftp == null) {
+            ftp = new FtpHelper(this);
+        }
+        return ftp;
+    }
+
+    public WebDriver getDriver() {
+        if (wd == null) {
+            if (browser.equals(BrowserType.CHROME)) {
+                wd = new ChromeDriver();
+            } else wd = new FirefoxDriver();
+            baseUrl = "https://www.google.com/";
+            wd.manage().timeouts().implicitlyWait(Duration.ofSeconds(1));
+            js = (JavascriptExecutor) wd;
+            wd.get(properties.getProperty("web.baseUrl"));
+
+
+        }
+        return wd;
+    }
+
+    public MailHelper mail() {
+        if (mailHelper == null) {
+            mailHelper=new MailHelper(this);
+        }
+        return mailHelper;
+    }
+
+
+    public ChangePasswordHelper changePassword() {
+        if (changePasswordHelper == null) {
+            changePasswordHelper = new ChangePasswordHelper(this);
+        }
+        return  changePasswordHelper;
+    }
+
+    public DbHelper db(){
+        if (dbHelper == null) {
+            dbHelper = new DbHelper(this);
+        }
+        return dbHelper;
     }
 }

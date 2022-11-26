@@ -6,6 +6,8 @@ repositories {
 
 dependencies {
     implementation 'org.testng:testng:7.6.1'
+    implementation 'javax.xml.ws:jaxws-api:2.3.1'
+    implementation 'com.sun.xml.ws:jaxws-ri:2.3.3'
 }
 buildscript{
     repositories{
@@ -14,6 +16,8 @@ buildscript{
     }
     dependencies {
         classpath 'no.nils:wsdl2java:0.10'
+        classpath 'javax.xml.ws:jaxws-api:2.3.1'
+        classpath 'com.sun.xml.ws:jaxws-ri:2.3.3'
     }
 }
 
@@ -23,6 +27,6 @@ wsdl2java {
     generatedWsdlDir = file("src/main/java")
     wsdlDir = file("src/main/resources")
     wsdlsToGenerate = [
-            ['src/main/resources/ipservice.wsdl.xml'],
+            ["$projectDir/src/main/resources/ipservice.wsdl.xml"],
     ]
 }

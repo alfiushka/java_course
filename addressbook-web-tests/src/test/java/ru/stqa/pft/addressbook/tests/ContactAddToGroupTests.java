@@ -25,11 +25,12 @@ public class ContactAddToGroupTests extends TestBase {
             app.goTo().goToContactPage();
             app.contact().create(new ContactData().withFirstName("FirstName").withLastName("LastName")
                     .withAddress("SPb asdfghjk 12").withPhone("123456789").withEmail("qwerty@as.ru"));
-            app.goTo().homePage();
+            app.goTo().returnToHomePage1();
         }
         if (app.db().groups().size() == 0) {
             app.goTo().groupPage();
             app.group().create(new GroupData().withName("test1"));
+            app.goTo().returnToHomePage1();
         }
     }
     @Test

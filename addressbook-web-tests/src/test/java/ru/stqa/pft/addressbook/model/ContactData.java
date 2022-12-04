@@ -3,11 +3,10 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
-import jakarta.persistence.*;
 import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -29,6 +28,7 @@ public class ContactData {
     private String lastName;
     @Expose
     @Column(name= "address")
+    @Type(type = "text")
     private String address;
     @Transient
     private String phone;
@@ -38,17 +38,21 @@ public class ContactData {
     private String allPhones;
     @Expose
     @Column(name= "home")
+    @Type(type = "text")
     private String home;
     @Expose
     @Column(name= "mobile")
+    @Type(type = "text")
     private String mobile;
     @Expose
     @Column(name= "work")
+    @Type(type = "text")
     private String work;
     @Transient
     private String email;
     @Expose
     @Column(name= "email")
+    @Type(type = "text")
     private String email1;
     @Transient
     private String email2;
